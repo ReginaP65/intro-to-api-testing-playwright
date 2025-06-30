@@ -41,9 +41,9 @@ test('put order with correct order status should receive code 200', async ({ req
 })
 test('put order with correct api key should receive code 200', async ({ request }) => {
   // prepare request body
-  const requestHeaders: {api_key:string} = {
-    "api_key": "1234567890123456",
-  };
+  const requestHeaders: { api_key: string } = {
+    api_key: '1234567890123456',
+  }
   const requestBody = {
     status: 'OPEN',
     courierId: 0,
@@ -51,12 +51,12 @@ test('put order with correct api key should receive code 200', async ({ request 
     customerPhone: 'string',
     comment: 'string',
     id: 0,
-  };
+  }
 
   const response = await request.post('https://backend.tallinn-learning.ee/test-orders', {
     headers: requestHeaders,
     data: requestBody,
-  });
+  })
   // Log the response status and body
   console.log('response status:', response.status())
   console.log('response body:', await response.json())
@@ -66,17 +66,17 @@ test('put order with correct api key should receive code 200', async ({ request 
 //negative scenario with PUT
 test('put order with incorrect api key should receive code 401', async ({ request }) => {
   // prepare request body
-  const requestHeaders: {api_key:string} = {
-    "api_key": "12345678",
-  };
+  const requestHeaders: { api_key: string } = {
+    api_key: '12345678',
+  }
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders1', {
     headers: requestHeaders,
-  });
+  })
   // Log the response status and body
   console.log('response status:', response.status())
   console.log('response body:', await response.text())
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
-});
+})
 test('put order with incorrect order status should receive code 400', async ({ request }) => {
   // prepare request body
   const requestBody = {
@@ -100,9 +100,9 @@ test('put order with incorrect order status should receive code 400', async ({ r
 //positive scenario with DELETE
 test('delete order with valid api key should receive code 200', async ({ request }) => {
   // prepare request body
-  const requestHeaders: {api_key:string} = {
-    "api_key": "1234567890123456",
-  };
+  const requestHeaders: { api_key: string } = {
+    api_key: '1234567890123456',
+  }
   const requestBody = {
     status: 'OPEN',
     courierId: 0,
@@ -110,12 +110,12 @@ test('delete order with valid api key should receive code 200', async ({ request
     customerPhone: 'string',
     comment: 'string',
     id: 0,
-  };
+  }
 
   const response = await request.post('https://backend.tallinn-learning.ee/test-orders', {
     headers: requestHeaders,
     data: requestBody,
-  });
+  })
   // Log the response status and body
   console.log('response status:', response.status())
   console.log('response body:', await response.json())
@@ -124,9 +124,9 @@ test('delete order with valid api key should receive code 200', async ({ request
 //negative scenario with DELETE
 test('delete order with invalid api key should receive code 401', async ({ request }) => {
   // prepare request body
-  const requestHeaders: {api_key:string} = {
-    "api_key": "123456789",
-  };
+  const requestHeaders: { api_key: string } = {
+    api_key: '123456789',
+  }
   const requestBody = {
     status: 'OPEN',
     courierId: 0,
@@ -134,12 +134,12 @@ test('delete order with invalid api key should receive code 401', async ({ reque
     customerPhone: 'string',
     comment: 'string',
     id: 0,
-  };
+  }
 
   const response = await request.post('https://backend.tallinn-learning.ee/test-orders2', {
     headers: requestHeaders,
     data: requestBody,
-  });
+  })
   // Log the response status and body
   console.log('response status:', response.status())
   console.log('response body:', await response.text())
